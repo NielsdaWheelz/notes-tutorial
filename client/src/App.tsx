@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import NotComponent from "./NoteComponent"
+import NoteComponent from "./NoteComponent"
 import type { Note } from "./types/types"
 import noteService from "./services/notes"
 
@@ -16,7 +16,7 @@ export default function App() {
   }, [notes])
 
   const noteElements = notes.map((note: Note) => (
-    <NotComponent content={note.content} key={note.id} />
+    <NoteComponent content={note.content} key={note.id} />
   ))
 
   const addNote = (event: React.FormEvent<HTMLFormElement>) => {
@@ -28,8 +28,8 @@ export default function App() {
       })
       .catch(error => {
         alert(`Error: ${error.message}`)
-        setNotes(notes.filter((n: Note) => n.id !== note.id))
       })
+    setNewNote("")
   }
 
   const handleContentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
